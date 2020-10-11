@@ -23,6 +23,9 @@ RUN bundle config --local frozen 1 && \
     bundle config --local build.sassc --disable-march-tune-native && \
     bundle install -j4 --retry 3
 
+COPY certs/ZscalerRootCertificate-2048-SHA256.crt /usr/local/share/ca-certificates
+RUN update-ca-certificates
+
 #### ONBUILD: Add triggers to the image, executed later while building a child image
 
 # Install Ruby gems (for production only)
