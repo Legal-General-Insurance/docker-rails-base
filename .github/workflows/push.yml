@@ -27,7 +27,7 @@ jobs:
       - name: Push the images to GitHub Container Registry
         if: github.ref == 'refs/heads/master'
         run: |
-          echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
           docker tag builder ghcr.io/legal-general-insurance/rails-base-builder:latest
           docker tag builder ghcr.io/legal-general-insurance/rails-base-builder:${{ env.TAG_NAME }}
