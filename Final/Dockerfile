@@ -1,5 +1,8 @@
 FROM ruby:2.7.2-alpine
-LABEL maintainer="georg@ledermann.dev"
+LABEL maintainer="wayne.quinlivan-smith@landg.com"
+
+COPY ZscalerRootCertificate-2048-SHA256.crt /usr/local/share/ca-certificates
+RUN update-ca-certificates
 
 # Add basic packages
 RUN apk add --no-cache \
