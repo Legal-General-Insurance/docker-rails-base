@@ -1,9 +1,6 @@
 FROM ruby:2.7.2-alpine
 LABEL maintainer="wayne.quinlivan-smith@landg.com"
 
-COPY ZscalerRootCertificate-2048-SHA256.crt /usr/local/share/ca-certificates
-RUN update-ca-certificates
-
 # Add basic packages
 RUN apk add --no-cache \
       build-base \
@@ -27,6 +24,10 @@ RUN bundle config --local frozen 1 && \
     bundle install -j4 --retry 3
 
 #### ONBUILD: Add triggers to the image, executed later while building a child image
+
+# Copy the ZScaler certs over so SSL doesn't break on when building later
+ONBUILD COPY ZscalerRootCertificate-2048-SHA256.crt /usr/local/share/ca-certificates
+ONBUILD RUN update-ca-certificates
 
 # Install Ruby gems (for production only)
 ONBUILD COPY Gemfile* /app/
