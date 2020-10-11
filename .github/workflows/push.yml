@@ -1,5 +1,10 @@
 name: Build images
-on: push
+on:
+  push:
+    paths:
+      - '.github/**'
+      - 'Builder/**'
+      - 'Final/**'
 
 env:
   TAG_NAME: 2.7.2-alpine

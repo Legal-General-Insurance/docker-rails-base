@@ -1,4 +1,4 @@
-![Build images](https://github.com/ledermann/docker-rails-base/workflows/Build%20images/badge.svg)
+![Build images](https://github.com/legal-general-insurance/docker-rails-base/workflows/Build%20images/badge.svg)
 
 # DockerRailsBase
 
@@ -72,8 +72,8 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node modu
 #### Build Docker image
 
 ```Dockerfile
-FROM ledermann/rails-base-builder:2.7.2-alpine AS Builder
-FROM ledermann/rails-base-final:2.7.2-alpine
+FROM legal-general-insurance/rails-base-builder:2.7.2-alpine AS Builder
+FROM legal-general-insurance/rails-base-final:2.7.2-alpine
 USER app
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 ```
